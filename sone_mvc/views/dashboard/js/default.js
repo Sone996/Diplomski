@@ -11,7 +11,7 @@ $(document).ready(function () {
         var deleteid = splitid[1];
         var hostString = window.location.protocol + "//" + window.location.host + "/";
         $.ajax({
-            url: hostString + '/Sone_MVC/dashboard/deleteAjax',
+            url: hostString + '/dashboard/deleteAjax',
             type: 'GET',
             data: {id: deleteid},
             success: function (response) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
         var deleteid = splitid[1];
         var hostString = window.location.protocol + "//" + window.location.host + "/";
         $.ajax({
-            url: hostString + '/Sone_MVC/user/deleteUserAjax',
+            url: hostString + '/user/deleteUserAjax',
             type: 'GET',
             data: {id: deleteid},
             success: function (response) {
@@ -64,7 +64,7 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         var hostString = window.location.protocol + "//" + window.location.host + "/";
         $.ajax({
-            url: hostString + '/Sone_MVC/dashboard/selectUser',
+            url: hostString + '/dashboard/selectUser',
             method: "POST",
             data: {id: id},
             dataType: "json",
@@ -85,7 +85,7 @@ $(document).ready(function () {
         var id = $("#id_edit").val();
         var hostString = window.location.protocol + "//" + window.location.host + "/";
         $.ajax({
-            url: hostString + '/Sone_MVC/dashboard/edit_save_data',
+            url: hostString + '/dashboard/edit_save_data',
             method: "POST",
             data: {id: id,
                 title: title,
@@ -108,18 +108,14 @@ $(document).ready(function () {
 
 
     $('#submit_user').click(function () {
-        var username = $("input[name='login']").val();
-        var password = $("input[name='password']").val();
+        var serializedData = $("#user_create_form").serialize();
         var hostString = window.location.protocol + "//" + window.location.host + "/";
-        alert("username: " + username + "\npassword: " + password);
+//        alert(serializedData);
         $.ajax({
-            url: hostString + '/Sone_MVC/dashboard/createUser',
+            url: hostString + '/user/createUser',
             method: "POST",
-            data: {
-                username: username,
-                password: password
-            },
-             success: function (data) {
+            data: serializedData,
+            success: function (data) {
                 if (data) {
                     alert("Success, user created!");
                     alert(data);
@@ -129,31 +125,43 @@ $(document).ready(function () {
             }
         });
     });
-
-//    $('#submit_user').submit(function (e) {
-//        e.preventDefault();
-//        var username = $("#username").val();
-//        var password = $("#password").val();
+//------------------------------------------
+//$("#submit_user").click(function() {
+// 
+//        // using serialize function of jQuery to get all values of form
+//        var serializedData = $("#user_create_form").serialize();
 //        var hostString = window.location.protocol + "//" + window.location.host + "/";
-//        alert("username: " + username + "\npassword: " + password);
-//        $.ajax({
-//            url: hostString + '/Sone_MVC/dashboard/createUser',
-//            method: "POST",
-//            data: {
-//                username: username,
-//                password: password
-//            },
-//            dataType: "json",
-//            success: function (data) {
-//                console.log(data);
-//                if (data) {
-//                    alert("Success, user created!");
-//                } else {
-//                    alert('You cant use blankspaces in name and password!');
-//                }
-//            }
+//        // Variable to hold request
+//        var request;
+//        // Fire off the request to process_registration_form.php
+//        request = $.ajax({
+//            url: hostString + 'user/createUserAjax',
+//            type: "post",
+//            data: serializedData
 //        });
+// 
+//        // Callback handler that will be called on success
+//        request.done(function(jqXHR, textStatus, response) {
+//            // you will get response from your php page (what you echo or print)
+//             // show successfully for submit message
+//            $("#result").html(response);
+//        });
+// 
+//        // Callback handler that will be called on failure
+//        request.fail(function(jqXHR, textStatus, errorThrown) {
+//            // Log the error to the console
+//            // show error
+//            $("#result").html('There is some error while submit');
+//            console.error(
+//                "The following error occurred: " +
+//                textStatus, errorThrown
+//            );
+//        });
+// 
+//        return false;
+// 
 //    });
+//-----------------------------------------
 
 });
 

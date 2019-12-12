@@ -22,14 +22,14 @@ class User_model extends Model
 
     public function createUser($data)
     {
-        $res =$this->db->insert('users',
+        $result =$this->db->insert('users',
             array(
                 'login' => $data['login'],
                 'password' => Hash::create('sha512', $data['password'],
                     HASH_PASSWORD_KEY),
                 'role' => $data['role']
         ));
-        return $res;
+        return $result;
     }
 
     public function deleteUser($id)
@@ -37,7 +37,7 @@ class User_model extends Model
         $result = $this->db->select("SELECT role FROM users WHERE id = :id",
             array(':id' => $id));
         $result = reset($result);
-        if ($result['role'] == 'owner') {
+        if ($result['role'] === 'owner') {
             return false;
         } else {
             $res = $this->db->delete('users', "id = $id");

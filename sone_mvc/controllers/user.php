@@ -28,37 +28,37 @@ class User extends Controller {
         $data['password'] = $_POST['password'];
         $data['role'] = $_POST['role'];
         if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role'])) {
-            if (preg_match('/\s/', $_POST['login']) || preg_match('/\s/',
-                            $_POST['password'])) {
-                return $data;
-                  header('location: '.URL.'user');
+            if (preg_match('/[^A-Za-z]/', $data['login']) || preg_match('/[^A-Za-z]/',
+                            $data['password'])) {
+//                return $data;
+                header('location: ' . URL . 'user');
+                return false;
             } else {
+//                return $result;
                 $result = $this->model->createUser($data);
                 header('location: ' . URL . 'user');
             }
         }
-//        echo $result;
+        return false;
     }
 
-    function createUserAjax() {
-        $data = array();
-        $data['login'] = $_POST['login'];
-        $data['password'] = $_POST['password'];
-        $data['role'] = $_POST['role'];
-        if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role'])) {
-            if (preg_match('/\s/', $_POST['login']) || preg_match('/\s/',
-                            $_POST['password'])) {
-                header('location: ' . URL . 'user');
-                die;
-            } else {
-                $result = $this->model->createUser($data);
-                header('location: ' . URL . 'user');
-                echo $result;
-            }
-        } else {
-            die;
-        }
-    }
+//    function createUserAjax() {
+//        $data = array();
+//        $data['login'] = $_POST['login'];
+//        $data['password'] = $_POST['password'];
+//        $data['role'] = $_POST['role'];
+//        if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role']) &&
+//                preg_match('/\s/', $_POST['login']) || preg_match('/\s/', $_POST['password'])) {
+//            $result = $this->model->createUser($data);
+//            if (!$result) {
+//                echo 'There was an error';
+//            } else {
+//                echo 'SUCCESS!';
+//            }
+//        } else {
+//            echo 'Invalid input. Please enter all the input fields in form and dont use blank spaces or special characters';
+//        }
+//    }
 
     function editUser($id) {
         $data = $this->model->userSingleList($id);
