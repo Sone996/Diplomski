@@ -1,6 +1,7 @@
 <h1>CREATE USER:</h1>
 <p>You can't use white spaces in name or password</p>
-<!--<div id="result" style="width: 200px; height: 50px; border: 1px solid black"></div>-->
+<!--For result message on creation-->
+<div id="result"></div>
 <div class="container">
     <form method="post" id="user_create_form" action="<?php echo URL; ?>user/createUser" autocomplete="off" class="was-validated">
         <div class="form-group row">

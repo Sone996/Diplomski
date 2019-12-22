@@ -30,16 +30,19 @@ class User extends Controller {
         if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role'])) {
             if (preg_match('/[^A-Za-z]/', $data['login']) || preg_match('/[^A-Za-z]/',
                             $data['password'])) {
-//                return $data;
-                header('location: ' . URL . 'user');
-                return false;
+//                header('location: ' . URL . 'user');
+//                return false;
+                echo 'There was an error';
             } else {
 //                return $result;
                 $result = $this->model->createUser($data);
-                header('location: ' . URL . 'user');
+//                header('location: ' . URL . 'user');
+                echo 'SUCCESS!';
             }
+        } else {
+//            return false;
+            echo 'Invalid input. Please enter all the input fields in form and dont use blank spaces or special characters';
         }
-        return false;
     }
 
 //    function createUserAjax() {

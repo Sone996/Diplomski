@@ -106,61 +106,62 @@ $(document).ready(function () {
     //validate
 
 
-
-    $('#submit_user').click(function () {
-        var serializedData = $("#user_create_form").serialize();
-        var hostString = window.location.protocol + "//" + window.location.host + "/";
-//        alert(serializedData);
-        $.ajax({
-            url: hostString + '/user/createUser',
-            method: "POST",
-            data: serializedData,
-            success: function (data) {
-                if (data) {
-                    alert("Success, user created!");
-                    alert(data);
-                } else {
-                    alert('You cant use blankspaces in name and password!');
-                }
-            }
-        });
-    });
-//------------------------------------------
-//$("#submit_user").click(function() {
-// 
-//        // using serialize function of jQuery to get all values of form
+// podaci se dupliraju zbog ovoga
+//    $('#submit_user').click(function () {
 //        var serializedData = $("#user_create_form").serialize();
 //        var hostString = window.location.protocol + "//" + window.location.host + "/";
-//        // Variable to hold request
-//        var request;
-//        // Fire off the request to process_registration_form.php
-//        request = $.ajax({
-//            url: hostString + 'user/createUserAjax',
-//            type: "post",
-//            data: serializedData
+////        alert(serializedData);
+//        $.ajax({
+//            url: hostString + '/user/createUser',
+//            method: "POST",
+//            cache: false,
+//            data: serializedData,
+//            success: function (response) {
+//                if (response === 1) {
+//                    alert("Success, user created!");
+//                    alert(data);
+//                } else {
+//                    alert('You cant use blankspaces in name and password!');
+//                }
+//            }
 //        });
-// 
-//        // Callback handler that will be called on success
-//        request.done(function(jqXHR, textStatus, response) {
-//            // you will get response from your php page (what you echo or print)
-//             // show successfully for submit message
-//            $("#result").html(response);
-//        });
-// 
-//        // Callback handler that will be called on failure
-//        request.fail(function(jqXHR, textStatus, errorThrown) {
-//            // Log the error to the console
-//            // show error
-//            $("#result").html('There is some error while submit');
-//            console.error(
-//                "The following error occurred: " +
-//                textStatus, errorThrown
-//            );
-//        });
-// 
-//        return false;
-// 
 //    });
+//------------------------------------------
+$("#submit_user").click(function() {
+ 
+        // using serialize function of jQuery to get all values of form
+        var serializedData = $("#user_create_form").serialize();
+        var hostString = window.location.protocol + "//" + window.location.host + "/";
+        // Variable to hold request
+        var request;
+        // Fire off the request to process_registration_form.php
+        request = $.ajax({
+            url: hostString + 'user/createUser',
+            type: "POST",
+            data: serializedData
+        });
+ 
+        // Callback handler that will be called on success
+        request.done(function(jqXHR, textStatus, response) {
+            // you will get response from your php page (what you echo or print)
+             // show successfully for submit message
+            $("#result").html(response);
+        });
+ 
+        // Callback handler that will be called on failure
+        request.fail(function(jqXHR, textStatus, errorThrown) {
+            // Log the error to the console
+            // show error
+            $("#result").html('There is some error while submit');
+            console.error(
+                "The following error occurred: " +
+                textStatus, errorThrown
+            );
+        });
+ 
+        return false;
+ 
+    });
 //-----------------------------------------
 
 });
