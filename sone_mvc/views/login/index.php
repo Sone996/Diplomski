@@ -15,7 +15,7 @@
                 <input type="password" name="password" class="form-control" id='username' placeholder="Password"/>
             </div>
         </div>
-        <label>&nbsp;</label><input class="btn btn-success" type="submit" />
+        <label>&nbsp;</label><input class="btn btn-success" type="submit" value="Login"/>
     </form>
 </div>
 <br>

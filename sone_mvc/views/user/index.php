@@ -27,7 +27,7 @@
         </div>
         <div class="form-group row">
             <div class="col-md-4 mb-3">
-                <label>&nbsp;</label><input id="submit_user" class="btn btn-success" type="submit">
+                <label>&nbsp;</label><input id="submit_user" class="btn btn-success" type="submit" value="Create User">
             </div>
         </div>
     </form>

@@ -32,7 +32,8 @@ class User extends Controller {
                             $data['password'])) {
 //                header('location: ' . URL . 'user');
 //                return false;
-                echo 'There was an error';
+                echo 'Dont use white speces or special characters!';
+                http_response_code(400);
             } else {
 //                return $result;
                 $result = $this->model->createUser($data);
@@ -41,27 +42,10 @@ class User extends Controller {
             }
         } else {
 //            return false;
+            http_response_code(400);
             echo 'Invalid input. Please enter all the input fields in form and dont use blank spaces or special characters';
         }
     }
-
-//    function createUserAjax() {
-//        $data = array();
-//        $data['login'] = $_POST['login'];
-//        $data['password'] = $_POST['password'];
-//        $data['role'] = $_POST['role'];
-//        if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role']) &&
-//                preg_match('/\s/', $_POST['login']) || preg_match('/\s/', $_POST['password'])) {
-//            $result = $this->model->createUser($data);
-//            if (!$result) {
-//                echo 'There was an error';
-//            } else {
-//                echo 'SUCCESS!';
-//            }
-//        } else {
-//            echo 'Invalid input. Please enter all the input fields in form and dont use blank spaces or special characters';
-//        }
-//    }
 
     function editUser($id) {
         $data = $this->model->userSingleList($id);

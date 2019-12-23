@@ -105,29 +105,7 @@ $(document).ready(function () {
     //------------------------------------------------------------------------------------
     //validate
 
-
-// podaci se dupliraju zbog ovoga
-//    $('#submit_user').click(function () {
-//        var serializedData = $("#user_create_form").serialize();
-//        var hostString = window.location.protocol + "//" + window.location.host + "/";
-////        alert(serializedData);
-//        $.ajax({
-//            url: hostString + '/user/createUser',
-//            method: "POST",
-//            cache: false,
-//            data: serializedData,
-//            success: function (response) {
-//                if (response === 1) {
-//                    alert("Success, user created!");
-//                    alert(data);
-//                } else {
-//                    alert('You cant use blankspaces in name and password!');
-//                }
-//            }
-//        });
-//    });
-//------------------------------------------
-$("#submit_user").click(function() {
+    $("#submit_user").click(function(e) {
  
         // using serialize function of jQuery to get all values of form
         var serializedData = $("#user_create_form").serialize();
@@ -159,7 +137,8 @@ $("#submit_user").click(function() {
             );
         });
  
-        return false;
+//        return false;
+        e.preventDefault();
  
     });
 //-----------------------------------------

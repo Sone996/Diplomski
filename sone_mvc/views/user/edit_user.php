@@ -28,7 +28,7 @@
         </div>
         <div class="form-group row">
             <div class="col-md-4 mb-3">
-                <label>&nbsp;</label><input class="btn btn-success" type="submit">
+                <label>&nbsp;</label><input class="btn btn-success" type="submit" value="Save Changes">
             </div>
         </div>
     </form>
