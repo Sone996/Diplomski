@@ -13,7 +13,7 @@
         <div class="form-group row">
             <div class="col-md-4 mb-3">
                 <label for="password">Password</label>
-                <input type="text" name="password" class="form-control" id='password' required>
+                <input type="password" name="password" class="form-control" id='password' required>
             </div>
         </div>
         <div class="form-group row">

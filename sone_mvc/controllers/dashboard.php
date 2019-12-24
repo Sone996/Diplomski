@@ -7,7 +7,7 @@ class Dashboard extends Controller
     {
         parent::__construct();
         Auth::handleLogin();
-        $this->view->js = array('dashboard/js/default.js');
+        $this->view->js = array('../public/js/default.js');
     }
 
     public function index()

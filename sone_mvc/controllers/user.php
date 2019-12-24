@@ -14,14 +14,17 @@ class User extends Controller {
             exit();
         }
         $this->view->js = array('dashboard/js/default.js');
+        $this->view->js = array('../public/js/default.js');
     }
 
+    //Vraca listu usera i renderuje view
     function index() {
         $this->view->title = 'Users';
         $this->view->userList = $this->model->userList();
         $this->view->render('user/index', false, $data = array());
     }
 
+    //Funkcija za kreiranje novog usera
     function createUser() {
         $data = array();
         $data['login'] = $_POST['login'];
@@ -30,18 +33,14 @@ class User extends Controller {
         if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['role'])) {
             if (preg_match('/[^A-Za-z]/', $data['login']) || preg_match('/[^A-Za-z]/',
                             $data['password'])) {
-//                header('location: ' . URL . 'user');
-//                return false;
                 echo 'Dont use white speces or special characters!';
                 http_response_code(400);
             } else {
-//                return $result;
                 $result = $this->model->createUser($data);
-//                header('location: ' . URL . 'user');
                 echo 'SUCCESS!';
+                http_response_code(200);          
             }
         } else {
-//            return false;
             http_response_code(400);
             echo 'Invalid input. Please enter all the input fields in form and dont use blank spaces or special characters';
         }
@@ -54,6 +53,7 @@ class User extends Controller {
         $this->view->render('user/edit_user', false, $data);
     }
 
+    //Funkcija za editovanje usera
     function editSave($id) {
         $data = array();
         $data['id'] = $id;
@@ -71,6 +71,7 @@ class User extends Controller {
         }
     }
 
+    //For deleting user
     function deleteUserAjax() {
         $id = $_GET['id'];
         $result = $this->model->deleteUser($id);
