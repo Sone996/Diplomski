@@ -1,0 +1,7 @@
+.ellipsis {
+    max-width: 27vw;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+}
